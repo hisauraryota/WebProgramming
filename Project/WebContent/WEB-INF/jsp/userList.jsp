@@ -1,13 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html lang="ja">
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ユーザ一覧</title>
-    
+
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="original.css" rel="stylesheet">
+    <link href="css/original.css" rel="stylesheet">
 
 
   </head>
@@ -18,13 +20,13 @@
       <nav class="navbar navbar-inverse">
       	<div class="container">
       		<div class="navbar-header">
-            <a class="navbar-brand" href="userCreate.html">ユーザ管理システム</a>
+            <a class="navbar-brand" href="login.jsp">ユーザ管理システム</a>
       		</div>
 
           <ul class="nav navbar-nav navbar-right">
           	<li class="navbar-text">ユーザ名 さん </li>
           		<li class="dropdown">
-          			<a href="index1.html" class="navbar-link logout-link">ログアウト</a>
+          			<a href="login.jsp" class="navbar-link logout-link">ログアウト</a>
           		</li>
           </ul>
       	</div>

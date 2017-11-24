@@ -10,7 +10,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="original.css" rel="stylesheet">
+    <link href="css/original.css" rel="stylesheet">
 
 
   </head>
@@ -20,7 +20,7 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="index.html">ユーザ管理システム</a>
+					<a class="navbar-brand" href="login.jsp">ユーザ管理システム</a>
 				</div>
 			</div>
 		</nav>
@@ -35,7 +35,7 @@
 					<h2>Sign In</h2>
 					<hr class="colorgraph">
 					<div class="form-group">
-          				<input type="loginId" id="loginId" name="id" class="form-control input-lg" placeholder="ログインID" required autofocus>
+          				<input type="text" id="loginId" name="id" class="form-control input-lg" placeholder="ログインID" required autofocus>
 					</div>
 					<div class="form-group">
                     	<input type="password" name="password" id="pass" class="form-control input-lg" placeholder="Password">
@@ -50,6 +50,12 @@
 					</div>
 				</fieldset>
 			</form>
+			<%
+   				 String error = (String)request.getAttribute("error");
+    			 if (error != null) {
+			%>
+    			<p style="color:red; font-size: larger;"><%= error %></p>
+			<%   } %>
 		</div>
 	</div>
 
