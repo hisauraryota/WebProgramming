@@ -20,15 +20,20 @@
       <nav class="navbar navbar-inverse">
       	<div class="container">
       		<div class="navbar-header">
-            <a class="navbar-brand" href="login.jsp">ユーザ管理システム</a>
+            <a class="navbar-brand" href=>ユーザ管理システム</a>
       		</div>
+				<form  action="/UserManagement/loginServlet" method="get">
 
           <ul class="nav navbar-nav navbar-right">
-          	<li class="navbar-text">ユーザ名 さん </li>
+          	<li class="navbar-text">${login.name}さん </li>
+
           		<li class="dropdown">
-          			<a href="login.jsp" class="navbar-link logout-link">ログアウト</a>
+
+          				<a  class="navbar-link logout-link" href=>ログアウト</a>
+
           		</li>
           </ul>
+          </form>
       	</div>
       </nav>
     </header>

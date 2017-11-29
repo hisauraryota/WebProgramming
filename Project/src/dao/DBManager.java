@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBManager {
-    private static String url = "jdbc:mysql://localhost/UserManagement";
+    private static String url = "jdbc:mysql://localhost/userManagementdb";
     private static String user = "root";
-    private static String pass = "";
+    private static String pass = "password";
 
     /**
      * DBへ接続するコネクションを返す

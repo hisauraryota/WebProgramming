@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDao;
 import model.User;
@@ -32,9 +33,18 @@ public class loginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		//フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		dispatcher.forward(request, response);
+		HttpSession session = request.getSession();
+		User login = (User)session.getAttribute("login");
+
+
+		if(login == null) {
+			//フォワード
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userList.jsp");
+			dispatcher.forward(request, response);
+		}
 
 	}
 
@@ -48,19 +58,29 @@ public class loginServlet extends HttpServlet {
 
 		// リクエストパラメータの取得
 		String id = request.getParameter("id");
-		String pass = request.getParameter("password");
+		String pass = request.getParameter("pass");
 
 		UserDao userDao = new UserDao();
-		User user = userDao.findUser();
+		User user = userDao.findUser(id,pass);
 
-		if (id.equals(user.getLoginId()) && pass.equals(user.getPassword())) {
-			//フォワード
+
+		if (user != null){
+			HttpSession session = request.getSession();
+			session.setAttribute("login", user);
+
+			request.setAttribute("name", user.getName());
+
+			//ユーザ一覧画面にフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userList.jsp");
 			dispatcher.forward(request, response);
 
 		} else {
 			request.setAttribute("error", "ログインIDまたはパスワードが間違っています。");
-			request.getRequestDispatcher("/user_login.jsp").forward(request, response);
+
+			//ログイン画面にフォワード
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+
 		}
 
 	}
